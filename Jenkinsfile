@@ -4,11 +4,11 @@ pipeline {
     environment {
         IMAGE_NAME = 'phucntp/my-nest-app'
         TAG = "latest" // Hoặc dùng "${env.BUILD_NUMBER}" nếu muốn version hóa
-        SSH_CREDENTIALS_ID = '85b936a3-017f-4af2-ada7-f4dcca7b6dad' // ID SSH credentials trong Jenkins
+        SSH_CREDENTIALS_ID = '136713cd-b94f-49ce-b321-9ed70af08a87' // ID SSH credentials trong Jenkins
         REMOTE_USER = 'phucn'
         REMOTE_HOST = '192.168.14.234'
         REMOTE_DIR = '/home/phucn/app'
-        DOCKER_REGISTRY_CREDENTIALS = '85b936a3-017f-4af2-ada7-f4dcca7b6dad'
+        DOCKER_REGISTRY_CREDENTIALS = '136713cd-b94f-49ce-b321-9ed70af08a87'
         PASSWORD = 'phucqwert1106'
         USERNAME = 'phucntp'
     }
@@ -56,7 +56,7 @@ pipeline {
                 //         docker-compose up -d"
                 //     """
                 // }
-                 sshagent(['85b936a3-017f-4af2-ada7-f4dcca7b6dad']) {
+                 sshagent(['136713cd-b94f-49ce-b321-9ed70af08a87']) {
                     // Thử kết nối SSH hoặc clone repo để test
                     bat 'echo "SSH connection failed"'
                 }
