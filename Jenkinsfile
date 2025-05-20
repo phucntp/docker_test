@@ -37,24 +37,25 @@ pipeline {
                     sh '''
                         echo $PASSWORD | docker login -u $USERNAME --password-stdin
                         docker push $IMAGE_NAME:$TAG
+                        echo test
                         docker logout
                     '''
                 }
             }
         }
 
-        stage('Deploy to Server') {
-            steps {
-                sshagent([SSH_CREDENTIALS_ID]) {
-                    sh """
-                        ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST '
-                            cd $REMOTE_DIR &&
-                            docker-compose pull &&
-                            docker-compose up -d
-                        '
-                    """
-                }
-            }
-        }
+        // stage('Deploy to Server') {
+        //     steps {
+        //         sshagent([SSH_CREDENTIALS_ID]) {
+        //             sh """
+        //                 ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST '
+        //                     cd $REMOTE_DIR &&
+        //                     docker-compose pull &&
+        //                     docker-compose up -d
+        //                 '
+        //             """
+        //         }
+        //     }
+        // }
     }
 }
