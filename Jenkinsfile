@@ -48,19 +48,11 @@ pipeline {
 
         stage('Deploy to Server') {
             steps {
-                // sshagent([SSH_CREDENTIALS_ID]) {
-                //     bat """
-                //         ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} ^
-                //         "cd ${REMOTE_DIR} && ^
-                //         docker-compose pull && ^
-                //         docker-compose up -d"
-                //     """
-                // }
-                 sshagent(['136713cd-b94f-49ce-b321-9ed70af08a87']) {
-                    // Thử kết nối SSH hoặc clone repo để test
-                    bat 'echo "SSH connection failed"'
-                }
-            }
+        bat """
+            sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} \\
+            'cd ${REMOTE_DIR} && docker-compose pull && docker-compose up -d'
+        """
+    }
         }
     }
 }
