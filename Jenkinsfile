@@ -9,8 +9,8 @@ pipeline {
         REMOTE_HOST = '192.168.14.234'
         REMOTE_DIR = '/home/phucn/app'
         DOCKER_REGISTRY_CREDENTIALS = '85b936a3-017f-4af2-ada7-f4dcca7b6dad'
-        USERNAME = 'phucntp',
         PASSWORD = 'phucqwert1106'
+        USERNAME = 'phucntp'
     }
 
     stages {
