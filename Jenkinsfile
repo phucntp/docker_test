@@ -49,9 +49,9 @@ pipeline {
         stage('Deploy to Server') {
             steps {
         bat """
-            sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} \\
-            'cd ${REMOTE_DIR} && docker-compose pull && docker-compose up -d'
-        """
+            sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} ^
+                \"cd ${REMOTE_DIR} && docker-compose pull && docker-compose up -d\"
+            """
     }
         }
     }
