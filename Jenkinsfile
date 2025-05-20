@@ -20,12 +20,12 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                bat 'yarn install'
-                bat 'yarn build'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         bat 'yarn install'
+        //         bat 'yarn build'
+        //     }
+        // }
 
         stage('Build Docker Image') {
             steps {
@@ -46,18 +46,18 @@ pipeline {
             }
         }
 
-        // stage('Deploy to Server') {
-        //     steps {
-        //         sshagent([SSH_CREDENTIALS_ID]) {
-        //             sh """
-        //                 ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST '
-        //                     cd $REMOTE_DIR &&
-        //                     docker-compose pull &&
-        //                     docker-compose up -d
-        //                 '
-        //             """
-        //         }
-        //     }
-        // }
+        stage('Deploy to Server') {
+            steps {
+                sshagent([SSH_CREDENTIALS_ID]) {
+                    bat """
+                        ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST '
+                            cd $REMOTE_DIR &&
+                            docker-compose pull &&
+                            docker-compose up -d
+                        '
+                    """
+                }
+            }
+        }
     }
 }
