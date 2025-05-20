@@ -48,10 +48,12 @@ pipeline {
 
         stage('Deploy to Server') {
             steps {
-        bat """
-            sshpass -p '${PASSWORD}' ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} ^
-                \"cd ${REMOTE_DIR} && docker-compose pull && docker-compose up -d\"
+        sshagent([SSH_CREDENTIALS_ID]) {
+            powershell """
+                ssh -o StrictHostKeyChecking=no ${env.REMOTE_USER}@${env.REMOTE_HOST} `
+                "cd ${env.REMOTE_DIR} && docker-compose pull && docker-compose up -d"
             """
+        }
     }
         }
     }
