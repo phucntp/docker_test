@@ -5,9 +5,9 @@ pipeline {
         IMAGE_NAME = 'phucntp/my-nest-app'
         TAG = "latest" // Hoặc dùng "${env.BUILD_NUMBER}" nếu muốn version hóa
         SSH_CREDENTIALS_ID = '85b936a3-017f-4af2-ada7-f4dcca7b6dad' // ID SSH credentials trong Jenkins
-        REMOTE_USER = 'ubuntu'
+        REMOTE_USER = 'phucn'
         REMOTE_HOST = '192.168.14.234'
-        REMOTE_DIR = '/home/ubuntu/app'
+        REMOTE_DIR = '/home/phucn/app'
         DOCKER_REGISTRY_CREDENTIALS = '85b936a3-017f-4af2-ada7-f4dcca7b6dad'
     }
 
