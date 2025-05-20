@@ -22,21 +22,21 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'yarn install'
-                sh 'yarn build'
+                bat 'yarn install'
+                bat 'yarn build'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t $IMAGE_NAME:$TAG ."
+                bat "docker build -t $IMAGE_NAME:$TAG ."
             }
         }
 
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: DOCKER_REGISTRY_CREDENTIALS, usernameVariable: 'phucntp', passwordVariable: 'phucqwert1106')]) {
-                    sh '''
+                    bat '''
                         echo $PASSWORD | docker login -u $USERNAME --password-stdin
                         docker push $IMAGE_NAME:$TAG
                         echo test
