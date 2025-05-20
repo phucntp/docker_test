@@ -48,9 +48,9 @@ pipeline {
 
         stage('Deploy to Server') {
             steps {
-                sshagent([SSH_CREDENTIALS_ID]) {
+                sshagent([env.SSH_CREDENTIALS_ID]) {
                     bat """
-                        ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST '
+                        ssh -o StrictHostKeyChecking=no phucntp@phucqwert1106 '
                             cd $REMOTE_DIR &&
                             docker-compose pull &&
                             docker-compose up -d
